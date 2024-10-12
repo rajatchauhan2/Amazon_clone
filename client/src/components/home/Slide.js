@@ -45,22 +45,20 @@ const Slide = ({title}) => {
         itemClass="carousel-item-padding-40-px"
         containerClass="carousel-container"
       >
-        {products.map((e) => {
-            return (
-          <div className="products_items">
-            <div className="product_img">
-              <img src={e.url} alt="productitem" />
+        {products.map((e, index) => {
+          return (
+            <div className="products_items" key={index}> {/* Add key prop here */}
+              <div className="product_img">
+                <img src={e.url} alt="productitem" />
+              </div>
+              <p className="products_name">{e.title.shortTitle}</p>
+              <p className="products_offer">{e.discount}</p>
+              <p className="products_explore">{e.tagline}</p>
             </div>
-            <p className="products_name">{e.title.shortTitle}</p>
-            <p className="products_offer">{e.discount}</p>
-            <p className="products_explore">{e.tagline}</p>
-          </div>
-            )
-        }    
-    )}
+          );
+        })}
       </Carousel>
     </div>
   );
 };
-
 export default Slide;
