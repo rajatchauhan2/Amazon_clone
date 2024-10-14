@@ -11,7 +11,7 @@ const Navbaar = () => {
       <nav>
         <div className="left">
           <div className="navlogo">
-            <NavLink to="/"> <img src="./amazon_PNG25.png" alt="" /></NavLink> 
+            <NavLink to="/"> <img src="./logo.jpg" alt="" /></NavLink> 
           </div>
           <div className="nav_searchbaar">
             <input type="text" name="" id="" />

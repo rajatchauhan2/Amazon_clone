@@ -30,20 +30,24 @@ footer .footer_container .footr_details_one p{
 
 
 footer .lastdetails{
-    background-color: #131A22;
+    background-color: #c7d8ce;
     height:20vh;
+}
+footer .lastdetails.p{
+    color: #0c0c0c;
 }
 
 footer img{
     display: block;
-    width: 80px;
-    margin: 50px auto auto auto;
+    width: 200px;
+    margin: 20px auto auto auto;
     text-align: center;
     padding-top: 30px;
+    height: 50px;
 }
 
 footer p{
-    color: #fff;
+    color: #f1e8e8;
     font-size: 12px;
     letter-spacing: .3px;
     text-align: center;

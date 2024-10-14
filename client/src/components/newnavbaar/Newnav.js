@@ -13,11 +13,11 @@ const Newnav = () => {
                 <p>Electronics</p>
                 <p>Prime</p>
                 <p>Today's deal</p>
-                <p>Amazon Pay</p>
+                
             </div>
-            <div className="left_data">
+            {/* <div className="right_data">
                 <img src="./nav.jpg" alt="navdata" />
-            </div>
+            </div> */}
         </div>
     </div>
   )

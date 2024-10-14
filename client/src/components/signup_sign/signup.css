@@ -14,9 +14,11 @@ section{
 }
 
 .sign_header img{
-    width: 200px;
-    margin-top: -40px;
+    width: 150px;
+    margin-top: 0px;
+    margin-bottom: 30px;
     cursor: pointer;
+    
 }
 
 .sign_form{
@@ -53,14 +55,14 @@ section{
     margin-top: 7px;
     margin-bottom: 23px;
     width: 100%;
-    background: #f3d078;
+    background: #78f3f1;
     cursor: pointer;
-    border:1px solid #9c7e31;
+    border:1px solid #1d1b18;
     height: 29px;
     outline: none;
     border-radius: 3px;
     color: #111;
-    background: linear-gradient(to bottom,#f7dfa5,#f0c14b)
+    background: linear-gradient(to bottom,#f7dfa5,#78f3f1)
 }
 
 .sign_form input:focus{

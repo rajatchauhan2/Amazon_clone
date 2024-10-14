@@ -12,7 +12,7 @@ const footer = () => {
                 <p>About Us</p>
                 <p>Careers</p>
                 <p>Press Releases</p>
-                <p>Amazon Cares</p>
+                
             </div>
             <div className="footer_details_one">
                 <h3>Connect with Us</h3>
@@ -34,8 +34,8 @@ const footer = () => {
             </div>
         </div>
         <div className="lastdetails">
-            <img src="./amazon_PNG25.png" alt="" />
-            <p>Copyright 1996-{year} &nbsp; &nbsp; &nbsp;     Amazon.com &nbsp; &nbsp; &nbsp;       Inc. or its affiliates </p>
+            <img src="./logo.jpg" alt="" />
+            <p>Copyright 2023-{year} &nbsp; &nbsp; &nbsp;     Shopper hub.com &nbsp; &nbsp; &nbsp;       Inc. or its affiliates </p>
         </div>
     </footer>
   )

@@ -29,7 +29,7 @@ const Signup = () => {
     <section>
       <div className="sign_container">
         <div className="sign_header">
-          <img src="./blacklogoamazon.png" alt="amazonlogo" />
+          <img src="./logo.jpg" alt="amazonlogo" />
         </div>
         <div className="sign_form">
           <form>
@@ -82,7 +82,7 @@ const Signup = () => {
                 name="Cpassword"
                 id="Cpassword"
                 onChange={adddata}
-                value={udata.cpassword}
+                value={udata.password}
                 placeholder="Confirm Password"
               />
             </div>

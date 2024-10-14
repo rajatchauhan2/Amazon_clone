@@ -27,7 +27,7 @@ const Signin = () => {
     <section>
       <div className="sign_container">
         <div className="sign_header">
-          <img src="./blacklogoamazon.png" alt="amazonlogo" />
+          <img src="./logo.jpg" alt="logo" />
         </div>
         <div className="sign_form">
           <form>
@@ -59,8 +59,8 @@ const Signin = () => {
           </form>
         </div>
         <div className="create_accountinfo">
-            <p>New to Amazon</p>
-           <NavLink to="/signup"> <button> Create your Amazon account</button></NavLink>
+            <p>New to Shopper Hub</p>
+           <NavLink to="/signup"> <button> Create your Shopper Hub account</button></NavLink>
         </div>
       </div>
     </section>
