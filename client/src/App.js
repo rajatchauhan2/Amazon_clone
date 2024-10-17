@@ -19,7 +19,7 @@ function App() {
     <Route path="/" element={<Maincomp />} />
     <Route path="/signin" element={<Signin />} />
     <Route path="/signup" element={<Signup />} />
-    <Route path="/cart/:id" element={<Cart />} />
+    <Route path="/getproductsone/:id" element={<Cart />} />
     <Route path="/buynow" element={<Buynow />} />
    </Routes>
   

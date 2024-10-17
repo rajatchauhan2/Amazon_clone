@@ -1,7 +1,7 @@
 const products = []
 
 
-export const getProductsredcer = (state,action)=>{
+export const getProductsreducer = (state={products},action)=>{
 switch(action.type){
     case 'SUCCESS_GET_PRODUCTS':
         return {products : action.payload}
