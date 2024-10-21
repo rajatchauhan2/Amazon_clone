@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Signup = () => {
   const [udata, setUdata] = useState({
     name: "",
@@ -11,16 +12,12 @@ const Signup = () => {
     Cpassword: "",
   });
 
-  console.log(udata);
-
   const adddata = (e) => {
     const { name, value } = e.target;
 
-    setUdata(() => {
-      return {
-        ...udata,
-        [name]: value,
-      };
+    setUdata({
+      ...udata,
+      [name]: value,
     });
   };
 
@@ -29,76 +26,47 @@ const Signup = () => {
     const { name, email, Mobile, password, Cpassword } = udata;
 
     if (name === "") {
-      toast.warn("Please enter your name", {
-        position: "top-center",
-      });
+      toast.warn("Please enter your name", { position: "top-center" });
     } else if (email === "") {
-      toast.warn("Please enter your email", {
-        position: "top-center",
-      });
+      toast.warn("Please enter your email", { position: "top-center" });
     } else if (Mobile === "") {
-      toast.warn("Please enter your Mobile", {
-        position: "top-center",
-      });
+      toast.warn("Please enter your Mobile", { position: "top-center" });
     } else if (password === "") {
-      toast.warn("Please enter your password", {
-        position: "top-center",
-      });
+      toast.warn("Please enter your password", { position: "top-center" });
     } else if (Cpassword === "") {
-      toast.warn("Please enter your Cpassword", {
-        position: "top-center",
-      });
+      toast.warn("Please enter your Confirm Password", { position: "top-center" });
     } else {
-      const res = await fetch("register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          Mobile,
-          password,
-          Cpassword,
-        }),
-      });
-      const data = await res.json();
-    }
+      try {
+        const res = await fetch("register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            Mobile,
+            password,
+            Cpassword,
+          }),
+        });
 
-    const res = await fetch("register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        Mobile,
-        password,
-        Cpassword,
-      }),
-    });
-    const data = await res.json();
-    // console.log(data);
-
-    if (res.status === 422 || !data) {
-      // alert(" no data ")
-      toast.warning("invalid details", {
-        position: "top-center",
-      });
-    } else {
-      // alert("data added");
-      toast.success("data added succesfully", {
-        position: "top-center",
-      });
-      setUdata({
-        ...udata,
-        name: "",
-        email: "",
-        Mobile: "",
-        password: "",
-        Cpassword: "",
-      });
+        if (!res.ok) {
+          toast.warning("Invalid details", { position: "top-center" });
+        } else {
+          const data = await res.json();
+          toast.success("Data added successfully", { position: "top-center" });
+          setUdata({
+            name: "",
+            email: "",
+            Mobile: "",
+            password: "",
+            Cpassword: "",
+          });
+        }
+      } catch (error) {
+        toast.error("Something went wrong", { position: "top-center" });
+      }
     }
   };
 
@@ -112,9 +80,9 @@ const Signup = () => {
           <form method="POST">
             <h1>Sign-Up</h1>
             <div className="form_data">
-              <label htmlFor="Name">Your Name</label>
+              <label htmlFor="name">Your Name</label>
               <input
-                type="name"
+                type="text"
                 name="name"
                 id="name"
                 onChange={adddata}
@@ -123,7 +91,7 @@ const Signup = () => {
               />
             </div>
             <div className="form_data">
-              <label htmlFor="Email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 name="email"
@@ -136,7 +104,7 @@ const Signup = () => {
             <div className="form_data">
               <label htmlFor="Mobile">Mobile Number</label>
               <input
-                type="Mobile"
+                type="tel"
                 name="Mobile"
                 id="Mobile"
                 onChange={adddata}
@@ -145,7 +113,7 @@ const Signup = () => {
               />
             </div>
             <div className="form_data">
-              <label htmlFor="Password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 name="password"
@@ -156,10 +124,9 @@ const Signup = () => {
               />
             </div>
             <div className="form_data">
-              <label htmlFor="Cpassword ">Confirm Password</label>
-
+              <label htmlFor="Cpassword">Confirm Password</label>
               <input
-                type="Cpassword"
+                type="password"
                 name="Cpassword"
                 id="Cpassword"
                 onChange={adddata}
@@ -171,7 +138,7 @@ const Signup = () => {
               Continue
             </button>
             <div className="signin_info">
-              <p>Already have an account</p>
+              <p>Already have an account?</p>
               <NavLink to="/signin">Signin</NavLink>
             </div>
           </form>

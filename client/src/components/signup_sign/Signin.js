@@ -48,7 +48,7 @@ const Signin = () => {
       });
       }else{
         console.log("data valid");
-        toast.warning("user valid", {
+        toast.success("user valid", {
           position: "top-center",
         });
         setData({...logdata,email:"",password:""});
