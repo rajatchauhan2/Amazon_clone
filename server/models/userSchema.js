@@ -46,7 +46,19 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
-  carts: Array,
+  cart: [
+    {
+      productId: {
+        type: String,
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        default: 1,
+      },
+    },
+  ],
 });
 
 // Hash the password before saving
@@ -79,13 +91,43 @@ userSchema.methods.generateAuthtoken = async function () {
 };
 
 // add to cart data
-userSchema.methods.addToCart = async function (cart) {
+// userSchema.methods.addtoCart = async function (cart) {
+//   try {
+//     this.carts = this.carts.concat(cart);
+//     await this.save();
+//     return this.carts;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// Example of addToCart method in the User schema
+//
+userSchema.methods.addToCart = async function (product) {
   try {
-    this.carts = this.carts.concat(cart);
-    await this.save();
-    return this.carts;
+    // Ensure the user's cart exists
+    if (!this.cart) {
+      this.cart = []; // Initialize cart if it's undefined
+    }
+
+    // Check if the product already exists in the cart
+    const productIndex = this.cart.findIndex(
+      (item) => item.productId === product.id
+    );
+    if (productIndex === -1) {
+      // If the product is not in the cart, add it
+      this.cart.push({
+        productId: product.id,
+        quantity: 1,
+      });
+    } else {
+      // If the product is already in the cart, update the quantity
+      this.cart[productIndex].quantity += 1;
+    }
+
+    return this.cart;
   } catch (error) {
-    console.log(error);
+    console.error("Error in addToCart method:", error);
+    throw error;
   }
 };
 

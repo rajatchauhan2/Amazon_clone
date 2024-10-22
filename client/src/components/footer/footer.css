@@ -30,12 +30,10 @@ footer .footer_container .footr_details_one p{
 
 
 footer .lastdetails{
-    background-color: #c7d8ce;
+    background-color: #131A22;
     height:20vh;
 }
-footer .lastdetails.p{
-    color: #0c0c0c;
-}
+
 
 footer img{
     display: block;
@@ -47,7 +45,7 @@ footer img{
 }
 
 footer p{
-    color: #f1e8e8;
+    color: #fff;
     font-size: 12px;
     letter-spacing: .3px;
     text-align: center;

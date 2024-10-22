@@ -103,31 +103,70 @@ router.post("/login", async (req, res) => {
 });
 
 // addind data in cart
-router.post("/addcart/:id", authenticate, async (req, res) => {
+// router.post("/addtocart/:id", authenticate, async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const cart = await Products.findOne({ id: id });
+
+//     if (!cart) {
+//       return res.status(404).json({ error: "Product not found" });
+//     }
+
+//     console.log(cart + "cart value");
+//     const UserContact = await USER.findOne({ _id: req.userID });
+//     console.log(UserContact);
+
+//     if (UserContact) {
+//       const cartdata = await UserContact.addToCart(cart);
+//       await UserContact.save();
+//       console.log(cartdata);
+//       res.status(201).json(UserContact);
+//     } else {
+//       res.status(401).json({ error: "Invalid Details" });
+//     }
+//   } catch (error) {
+//     res.status(401).json({ error: "Invalid Details" });
+//   }
+// });
+
+//
+
+router.post("/addtocart/:id", authenticate, async (req, res) => {
   try {
     const { id } = req.params;
-    const cart = await Products.findOne({ id: id });
 
-    if (!cart) {
+    // Step 1: Find the product by id
+    const product = await Products.findOne({ id: id });
+    if (!product) {
+      console.log("Product not found with id:", id);
       return res.status(404).json({ error: "Product not found" });
     }
+    console.log("Product found:", product);
 
-    console.log(cart + "cart value");
-    const UserContact = await USER.findOne({ _id: req.userID });
-    console.log(UserContact);
-
-    if (UserContact) {
-      const cartdata = await UserContact.addToCart(cart);
-      await UserContact.save();
-      console.log(cartdata);
-      res.status(201).json(UserContact);
-    } else {
-      res.status(401).json({ error: "Invalid Details" });
+    // Step 2: Find the user by req.userID
+    const user = await USER.findOne({ _id: req.userID });
+    if (!user) {
+      console.log("User not authenticated or found with ID:", req.userID);
+      return res.status(401).json({ error: "User not authenticated" });
     }
+    console.log("User found:", user);
+
+    // Step 3: Add the product to the user's cart
+    const updatedCart = await user.addToCart(product);
+    console.log("Cart before saving:", updatedCart);
+
+    // Step 4: Save the user's updated cart
+    await user.save();
+    console.log("User cart saved successfully");
+
+    // Step 5: Send success response with updated user info
+    res.status(201).json(user);
   } catch (error) {
-    res.status(401).json({ error: "Invalid Details" });
+    console.error("Error adding product to cart:", error); // Log the error message
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
   }
 });
-
 
 module.exports = router;
