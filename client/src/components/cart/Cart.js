@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./cart.css";
 import { Divider } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { LoginContext } from "../context/ContextProvider";
 
 const Cart = () => {
   const { id } = useParams("");  // get product id from URL params
+
+  const {account,setAccount} = useContext(LoginContext)
   const [inddata, setInddata] = useState(null);  // initialize inddata as null
+
 
   // Function to fetch product details based on ID
   const getinddata = async () => {

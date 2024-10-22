@@ -6,20 +6,18 @@ import store from './store';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import ContextProvider from "./components/context/ContextProvider"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- 
-  <Provider store={store}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  </Provider>
-  
-  ,
-  document.getElementById(root)
+  <ContextProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </ContextProvider>
 );
-
 
 reportWebVitals();

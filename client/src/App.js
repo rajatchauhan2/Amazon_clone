@@ -9,6 +9,7 @@ import Signup from './components/signup_sign/Signup';
 import { Routes,Route } from 'react-router-dom';
 import Cart from './components/cart/Cart';
 import Buynow from './components/buynow/Buynow';
+import ContextProvider from './components/context/ContextProvider';
 
 function App() {
   return (
